@@ -1,12 +1,23 @@
+import { Prisma, User, Work } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from './prisma.service';
 
 @Injectable()
 export class AppService {
-  onWork(): string {
-    return 'Hello World!';
+  constructor(private prisma: PrismaService) {}
+  
+  async isWorking (isleft : boolean){
+
   }
-  offWork(): string {
-    return 'Hello World';
+
+  async onWork(data : Prisma.WorkCreateInput): Promise<Work> {
+    return this.prisma.work.create({data})
+  }
+  
+  async offWork(name:Prisma.WorkCreateInput): Promise<Work>{
+    return this.prisma.work.create({
+      data: name,
+    })
   }
   culc(): string {
     return ''

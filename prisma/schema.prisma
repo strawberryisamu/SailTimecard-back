@@ -11,17 +11,18 @@ generator client {
 }
 
 model User {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  isleft   Boolean
+  id   Int  @id @default(autoincrement())
+  name String? @unique
+  isleft   Boolean?
   Work Work[]
 }
 
 model Work {
   id       Int  @id @default(autoincrement())
-  user     User @relation(fields: [userId], references: [id])
-  userId   Int
-  onwork   Int
-  offwork  Int
-  worktime Int
+  user     User? @relation(fields: [userId], references: [id])
+  userId   Int?
+  date     Int?
+  onwork   Int?
+  offwork  Int?
+  worktime Int?
 }

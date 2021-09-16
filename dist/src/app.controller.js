@@ -15,15 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
+const user_dto_1 = require("../dto/user.dto");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
     async onWork(body) {
-        return this.appService.onWork();
+        const { name, date, onwork } = body;
+        const work = await this.appService.onWork({});
+        return "helloworld";
     }
-    async offWork(body) {
-        return this.appService.offWork();
+    async offWork(name) {
+        return this.appService.offWork(name);
     }
     async worktime() {
         return "helloworld";
@@ -33,14 +36,14 @@ __decorate([
     (0, common_1.Post)('/onwork'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [user_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "onWork", null);
 __decorate([
     (0, common_1.Post)('/offwork'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [user_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "offWork", null);
 __decorate([
